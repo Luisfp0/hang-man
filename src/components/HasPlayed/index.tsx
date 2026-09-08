@@ -1,4 +1,6 @@
-export const HasPlayed = ({ wordToGuess}) => {
+import type { HasPlayedProps } from "./types";
+
+export const HasPlayed = ({ wordToGuess}: HasPlayedProps) => {
   const alreadyPlayed = localStorage.getItem("played")  
   const hasWin = localStorage.getItem("haWin")
 

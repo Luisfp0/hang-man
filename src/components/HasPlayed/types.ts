@@ -1,3 +1,3 @@
-export interface PlayedProps {
+export interface HasPlayedProps {
   wordToGuess: string;
 }
