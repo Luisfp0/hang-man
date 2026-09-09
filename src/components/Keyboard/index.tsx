@@ -5,8 +5,14 @@ export const Keyboard = ({wordToGuess, correctGuessedLetters, setCorrectGuessedL
   const keys = KEYS
   const onClickWord = (key: string) => {
     if(wordToGuess.includes(key)){
+      if(correctGuessedLetters.includes(key)){
+        return
+      }
       setCorrectGuessedLetters((currentLetters) => [...currentLetters, key])
     } else {
+      if(incorrectGuessedLetters.includes(key)){
+        return
+      }
       setIncorrectGuessedLetters((currentLetters) => [...currentLetters, key])
     }
   }

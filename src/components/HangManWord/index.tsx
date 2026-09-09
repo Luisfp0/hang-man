@@ -7,14 +7,14 @@ export const HangmanWord = ({guessedLetters, wordToGuess}: HangmanWordProps) => 
     <div style={{
       display: "flex",
       gap: ".25em",
-      fontSize: "6rem",
+      fontSize: "clamp(1.5rem, 5vw, 6rem)",
       fontWeight: "bold",
       textTransform: "uppercase",
       fontFamily: "monospace",
     }}>
       {wordSplitArray.map((letter, index) => (
         <div key={index} 
-          style={{ borderBottom: ".1em solid black",
+          style={{ borderBottom: "5px solid black",
         }}>
           <span style={{visibility: guessedLetters.includes(letter) ? "visible" : "hidden"
           }}>{letter}</span>
