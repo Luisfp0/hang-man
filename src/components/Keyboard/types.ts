@@ -4,4 +4,6 @@ export interface KeyboardProps {
   setCorrectGuessedLetters: React.Dispatch<React.SetStateAction<string[]>>;
   setIncorrectGuessedLetters: React.Dispatch<React.SetStateAction<string[]>>;
   incorrectGuessedLetters: string[];
+  isWinner: boolean;
+  isLoser: boolean;
 }

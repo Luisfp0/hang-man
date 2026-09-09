@@ -1,8 +1,7 @@
 import type { HasPlayedProps } from "./types";
 
-export const HasPlayed = ({ wordToGuess}: HasPlayedProps) => {
+export const HasPlayed = ({ wordToGuess, retry, isWinner}: HasPlayedProps) => {
   const alreadyPlayed = localStorage.getItem("played")  
-  const hasWin = localStorage.getItem("haWin")
 
   const targetTime = new Date();
   targetTime.setHours(15, 0, 0, 0)
@@ -18,7 +17,7 @@ export const HasPlayed = ({ wordToGuess}: HasPlayedProps) => {
       justifyContent: "center",
       width: "550px",
       height: "250px",
-      backgroundColor: hasWin ? "green" : "red",
+      backgroundColor: isWinner ? "green" : "red",
       opacity: 0.98,
       borderRadius: "50px",
       position: "absolute",
@@ -33,7 +32,7 @@ export const HasPlayed = ({ wordToGuess}: HasPlayedProps) => {
         justifyContent: "center",
         width: '100%'
         }}>
-          Você {hasWin ? "ganhou" : "perdeu"}!
+          Você {isWinner ? "ganhou" : "perdeu"}!
       </span>
       <span style={{
         fontSize: "2rem", 
@@ -51,6 +50,9 @@ export const HasPlayed = ({ wordToGuess}: HasPlayedProps) => {
       }}>
         Próxima palavra em: {timeUntilNextWord} horas.
       </span>
+      <button onClick={() => retry()}>
+        Tentar Novamente pra Leticia testar
+      </button>
     </div>
   )
 }

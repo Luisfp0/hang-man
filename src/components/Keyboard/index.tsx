@@ -1,7 +1,7 @@
 import type { KeyboardProps } from "./types"
 import { KEYS } from "./utils"
 
-export const Keyboard = ({wordToGuess, correctGuessedLetters, setCorrectGuessedLetters, setIncorrectGuessedLetters, incorrectGuessedLetters}: KeyboardProps) => {
+export const Keyboard = ({wordToGuess, correctGuessedLetters, setCorrectGuessedLetters, setIncorrectGuessedLetters, incorrectGuessedLetters, isWinner, isLoser}: KeyboardProps) => {
   const keys = KEYS
   const onClickWord = (key: string) => {
     if(wordToGuess.includes(key)){
@@ -16,6 +16,7 @@ export const Keyboard = ({wordToGuess, correctGuessedLetters, setCorrectGuessedL
         const isGuessed = correctGuessedLetters.includes(key)
         const isIncorrect = incorrectGuessedLetters.includes(key)
         return <button 
+        disabled={isWinner || isLoser}
         style={{
           display: "flex",
           border: "1px solid black",

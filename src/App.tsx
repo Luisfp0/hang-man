@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
-import word from "./wordLists.json"
+import { useState } from "react"
+import words from "./wordLists.json"
 import { HangmanDrawing } from "./components/HangmanDrawing"
 import { HangmanWord } from "./components/HangManWord"
 import { Keyboard } from "./components/Keyboard"
 import { EndGame } from "./components/EndGame"
-import { HasPlayed } from "./components/HasPlayed"
+// import { HasPlayed } from "./components/HasPlayed"
 
 export const App = () => {
-  const [wordToGuess] = useState<string>(() => {
-    return word[Math.floor(Math.random() * word.length)]
+  const [wordToGuess, setWordToGuess] = useState<string>(() => {
+    return words[Math.floor(Math.random() * words.length)]
   })
 
   const [correctGuessedLetters, setCorrectGuessedLetters] = useState<string[]>([])
@@ -17,15 +17,13 @@ export const App = () => {
 
   const isLoser = incorrectGuessedLetters.length >= 6
   const isWinner = wordToGuess.split("").every((letter) => correctGuessedLetters.includes(letter))
-  console.log(wordToGuess)
-
-  useEffect(() => {
-    if(isLoser || isWinner) {
-      localStorage.setItem("played", "true")
-      localStorage.setItem("hasWin", isWinner ? "true" : "false")
-      localStorage.setItem("hasLose", isLoser ? "true" : "false")
-    }
-  }, [correctGuessedLetters, incorrectGuessedLetters, wordToGuess, isLoser, isWinner])
+  
+  const retry = () => {
+    setCorrectGuessedLetters([])
+    setIncorrectGuessedLetters([])
+    const availableWords = words.filter((currentWord) => currentWord !== wordToGuess)
+    setWordToGuess(availableWords[Math.floor(Math.random() * words.length)])
+  }
 
   return (
     <div style={{
@@ -38,8 +36,8 @@ export const App = () => {
       justifyContent: "center",
       position: "relative"
     }}>
-      <EndGame isWinner={isWinner} isLoser={isLoser} wordToGuess={wordToGuess} />
-      <HasPlayed wordToGuess={wordToGuess}/>
+      <EndGame retry={retry} isWinner={isWinner} isLoser={isLoser} wordToGuess={wordToGuess} />
+      {/* <HasPlayed retry={() => retry()} wordToGuess={wordToGuess} isWinner={isWinner} isLoser={isLoser}/> */}
       <div style={{
         fontSize: "2rem",
         textAlign: "center",
@@ -52,6 +50,8 @@ export const App = () => {
         <HangmanDrawing incorrectGuessedLetters={incorrectGuessedLetters}/>
         <HangmanWord guessedLetters={correctGuessedLetters} wordToGuess={wordToGuess}/> 
         <Keyboard 
+          isLoser={isLoser}
+          isWinner={isWinner}
           wordToGuess={wordToGuess}
           correctGuessedLetters={correctGuessedLetters}
           setCorrectGuessedLetters={setCorrectGuessedLetters}
