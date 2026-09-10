@@ -108,7 +108,7 @@ export const EndGame = ({isWinner, isLoser, wordToGuess, retry}: EndGameProps) =
             "0 4px 0 #5a0000, 0 0 12px rgba(255, 42, 42, 0.55), inset 0 1px 0 #666",
         }}
       >
-        Try Again
+        {isWinner ? "Play Again" : "Try Again"}
       </button>
     </div>
   )

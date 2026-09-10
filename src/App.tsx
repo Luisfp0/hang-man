@@ -1,5 +1,5 @@
 import { useState } from "react"
-import words from "./wordLists.json"
+import { wordList } from "./utils"
 import { HangmanDrawing } from "./components/HangmanDrawing"
 import { HangmanWord } from "./components/HangManWord"
 import { Keyboard } from "./components/Keyboard"
@@ -7,8 +7,10 @@ import { EndGame } from "./components/EndGame"
 // import { HasPlayed } from "./components/HasPlayed"
 
 export const App = () => {
+  const [theme, setTheme] = useState("Geral")
+  const [wordsBySelectedTheme, setWordBySelectedTheme] = useState(wordList.find(element => element.theme === theme).words)
   const [wordToGuess, setWordToGuess] = useState<string>(() => {
-    return words[Math.floor(Math.random() * words.length)]
+    return wordsBySelectedTheme[Math.floor(Math.random() * wordsBySelectedTheme.length)]
   })
 
   const [correctGuessedLetters, setCorrectGuessedLetters] = useState<string[]>([])
@@ -21,9 +23,17 @@ export const App = () => {
   const retry = () => {
     setCorrectGuessedLetters([])
     setIncorrectGuessedLetters([])
-    const availableWords = words.filter((currentWord) => currentWord !== wordToGuess)
-    setWordToGuess(availableWords[Math.floor(Math.random() * words.length)])
+    const availableWords = wordsBySelectedTheme.filter((currentWord) => currentWord !== wordToGuess)
+    setWordToGuess(availableWords[Math.floor(Math.random() * wordsBySelectedTheme.length)])
   }
+
+  const onChangeTheme = ((theme: string) => {
+    setTheme(theme)
+    const availableWords = wordList.find(element => element.theme === theme).words
+    setWordBySelectedTheme(availableWords)
+    const word = availableWords[Math.floor(Math.random() * availableWords.length)]
+    setWordToGuess(word)
+  })
 
   return (
     <div style={{
@@ -47,6 +57,19 @@ export const App = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
+        <div style={{
+          display: "flex",
+          gap: "15px"
+        }}>
+          Tema:
+          <select onChange={(e) => onChangeTheme(e.target.value)}>
+            {
+              wordList.map((item) => (
+                <option value={item.theme}>{item.theme}</option>
+              ))
+            }
+          </select>
+        </div>
         <HangmanDrawing incorrectGuessedLetters={incorrectGuessedLetters}/>
         <HangmanWord guessedLetters={correctGuessedLetters} wordToGuess={wordToGuess}/> 
         <Keyboard 

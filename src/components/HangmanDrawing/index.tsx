@@ -1,9 +1,6 @@
 import { HangManBody } from "./components/HangManBody"
 import { HangManGallows } from "./components/HangManGallows"
-
-type HangmanDrawingProps = {
-  incorrectGuessedLetters: string[]
-}
+import type { HangmanDrawingProps } from "./types"
 
 export const HangmanDrawing = ({ incorrectGuessedLetters }: HangmanDrawingProps) => {
   return (

@@ -24,8 +24,8 @@ export const HangManBody = ({ incorrectGuessedLetters }: HangManBodyProps) => {
         {showBody && <Body />}
         {showRightArm && <Arm customPosition={{ right: "-5px", top: "150px", transform: "rotate(-40deg)" }} />}
         {showLeftArm && <Arm customPosition={{ right: "-55px", top: "150px", transform: "rotate(40deg)" }} />}
-        {showRightFoot && <Feet customPosition={{ right: "-5px", bottom: "-308px", transform: "rotate(-40deg)" }} />}
-        {showLeftFoot && <Feet customPosition={{ right: "-55px", bottom: "-308px", transform: "rotate(40deg)" }} />}
+        {showRightFoot && <Feet customPosition={{ right: "-5px", bottom: "-313px", transform: "rotate(-40deg)" }} />}
+        {showLeftFoot && <Feet customPosition={{ right: "-55px", bottom: "-313px", transform: "rotate(40deg)" }} />}
       </div>
     </div>
   )
