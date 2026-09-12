@@ -1,14 +1,15 @@
 import { useState } from "react"
-import { wordList } from "./utils"
+import dataSet from "./words.json" with {type:"json"}
 import { HangmanDrawing } from "./components/HangmanDrawing"
 import { HangmanWord } from "./components/HangManWord"
 import { Keyboard } from "./components/Keyboard"
 import { EndGame } from "./components/EndGame"
 // import { HasPlayed } from "./components/HasPlayed"
+const wordList = dataSet.words
 
 export const App = () => {
   const [theme, setTheme] = useState("Geral")
-  const [wordsBySelectedTheme, setWordBySelectedTheme] = useState(wordList.find(element => element.theme === theme).words)
+  const [wordsBySelectedTheme, setWordBySelectedTheme] = useState(dataSet.words.find(element => element.theme === theme).words)
   const [wordToGuess, setWordToGuess] = useState<string>(() => {
     return wordsBySelectedTheme[Math.floor(Math.random() * wordsBySelectedTheme.length)]
   })
@@ -19,7 +20,7 @@ export const App = () => {
 
   const isLoser = incorrectGuessedLetters.length >= 6
   const isWinner = wordToGuess.split("").every((letter) => correctGuessedLetters.includes(letter))
-  
+
   const retry = () => {
     setCorrectGuessedLetters([])
     setIncorrectGuessedLetters([])

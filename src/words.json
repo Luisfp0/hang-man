@@ -1,0 +1,34 @@
+{
+  "words": [
+    {
+      "theme": "Geral",
+      "words": [
+        "committee", "common", "pound", "self", "sell", "send", "sense", "separate", "serious", "serve", "service", "settle", "seven", "shall", "share", "sheet", "shoe", "shoot", "shop", "short", "should", "show", "shut", "sick", "side", "sign", "similar", "simple", "since", "sing", "single", "sister", "site", "young"
+      ]
+    },
+    {
+      "theme": "Rock",
+      "words": [
+        "guitar", "drums", "stage", "metal", "encore", "album", "concert", "singer", "chorus", "vinyl", "solo", "riff", "bass", "lyrics", "festival", "crowd", "speaker", "leather", "headset", "band"
+      ]
+    },
+    {
+      "theme": "Animais",
+      "words": [
+        "tigre", "cavalo", "aguia", "tubarao", "baleia", "coelho", "cobra", "panda", "lobo", "rato", "leao", "zebra", "macaco", "tartaruga", "golfinho", "urso", "jaguar", "koala"
+      ]
+    },
+    {
+      "theme": "Comida",
+      "words": [
+        "pizza", "hamburguer", "sushi", "manga", "pao", "queijo", "cafe", "cookie", "steak", "salada", "limao", "uva", "mel", "bacon", "pimenta", "manteiga", "laranja"
+      ]
+    },
+    {
+      "theme": "Tech",
+      "words": [
+        "react", "python", "github", "server", "pixel", "debug", "array", "button", "screen", "laptop", "cloud", "linux", "docker", "code", "mouse", "keyboard", "browser", "typescript"
+      ]
+    }
+  ]
+}
